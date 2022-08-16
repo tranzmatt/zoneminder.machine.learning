@@ -21,6 +21,7 @@ services:
             - MULTI_PORT_START=0
             - MULTI_PORT_END=0
         volumes:
+            - /dev/v4l:/dev/v4l
             - config:/config:rw
             - data:/var/cache/zoneminder:rw
             - cuda:/usr/local/cuda
