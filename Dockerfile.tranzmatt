@@ -80,4 +80,4 @@ RUN wget -q -O opencv.zip $OPENCV_URL \
     && rm -r opencv*
 
 RUN apt-mark hold libcudnn8 libcudnn8-dev
-RUN apt-get install --upgrade -y zoneminder
+RUN apt-get update && apt-get install --upgrade -y zoneminder
