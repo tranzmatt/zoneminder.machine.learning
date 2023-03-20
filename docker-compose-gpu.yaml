@@ -2,7 +2,7 @@ version: '3.1'
 services:
     zoneminder:
         build:
-            dockerfile: Dockerfile.tranzmatt
+            dockerfile: Dockerfile.build
             context: .
         container_name: zoneminder
         #image: dlandon/zoneminder.machine.learning:latest
@@ -22,10 +22,9 @@ services:
             - MULTI_PORT_END=0
         volumes:
             - /dev/v4l:/dev/v4l
-            - config:/config:rw
-            - data:/var/cache/zoneminder:rw
-            - cuda:/usr/local/cuda
+            - zoneminder_config:/config:rw
+            - zoneminder_data:/var/cache/zoneminder:rw
+            - /usr/local/cuda:/usr/local/cuda
 volumes:
-    config:
-    data:
-    cuda:
+    zoneminder_config:
+    zoneminder_data:
