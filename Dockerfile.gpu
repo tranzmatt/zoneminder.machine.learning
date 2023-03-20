@@ -21,7 +21,7 @@ RUN wget ${CUDA_URL}/${CUDA_DISTRO}/${CUDA_ARCH}/cuda-keyring_1.0-1_all.deb \
   && dpkg -i cuda-keyring_1.0-1_all.deb \
   && apt-get update \
   && apt-get install -y --upgrade -o Dpkg::Options::="--force-confdef" apache2 \
-  && apt-get upgrade -y \
+  && apt-get upgrade -y  \
   && apt-get install -y v4l-utils wget \
   && apt-get install -y cuda-${CUDA_VERSION} cuda-toolkit-${CUDA_VERSION} \
      "libcudnn8" "libcudnn8-dev" \

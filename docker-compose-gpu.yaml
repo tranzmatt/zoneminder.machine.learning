@@ -1,11 +1,12 @@
 version: '3.1'
 services:
     zoneminder:
+        # Need to build image to enable GPU acceleration
+        #image: dlandon/zoneminder.machine.learning:latest
         build:
             dockerfile: Dockerfile.build
             context: .
         container_name: zoneminder
-        #image: dlandon/zoneminder.machine.learning:latest
         restart: unless-stopped
         ports:
             - 8443:443/tcp
@@ -25,6 +26,15 @@ services:
             - zoneminder_config:/config:rw
             - zoneminder_data:/var/cache/zoneminder:rw
             - /usr/local/cuda:/usr/local/cuda
+        # We're using privileged mode.  Uncomment and configure if not
+        #devices:
+        #    - "/dev/dri:/dev/dri"
+        #    - "/dev/nvidia0:/dev/nvidia0"
+        #    - "/dev/nvidiactl:/dev/nvidiactl"
+        #    - "/dev/nvidia-modeset:/dev/nvidia-modeset"
+        #    - "/dev/nvidia-uvm:/dev/nvidia-uvm"
+        #    - "/dev/nvidia-uvm-tools:/dev/nvidia-uvm-tools"
+        #    - "/dev/video0:/dev/video0" 
 volumes:
     zoneminder_config:
     zoneminder_data:
